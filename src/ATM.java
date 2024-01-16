@@ -23,6 +23,7 @@ public class ATM {
         String name = scanner.nextLine();
         System.out.print("Choose a PIN: ");
         int pin = scanner.nextInt();
+        scanner.nextLine();
         this.customer = new Customer(name, pin);
         System.out.print("Would you like to make a " + ConsoleUtility.GREEN + "(s)avings" + ConsoleUtility.RESET + " or " + ConsoleUtility.BLUE + " (c)hecking account? " + ConsoleUtility.RESET);
         String answer = scanner.nextLine().toLowerCase();
@@ -51,12 +52,13 @@ public class ATM {
             System.out.println(ConsoleUtility.RED + "1." + ConsoleUtility.RESET + " Withdraw money");
             System.out.println(ConsoleUtility.LIGHT_RED + "2." + ConsoleUtility.RESET + " Deposit money");
             System.out.println(ConsoleUtility.YELLOW + "3." + ConsoleUtility.RESET + " Transfer money between accounts");
-            System.out.println(ConsoleUtility.GREEN + "4." + " Get account balances");
+            System.out.println(ConsoleUtility.GREEN + "4."  + ConsoleUtility.RESET + " Get account balances");
             System.out.println(ConsoleUtility.BLUE + "5." + ConsoleUtility.RESET + " Get transaction history");
-            System.out.println(ConsoleUtility.PURPLE + "6." + ConsoleUtility.RESET + " Change PIN");
+            System.out.println(ConsoleUtility.LIGHT_PURPLE + "6." + ConsoleUtility.RESET + " Change PIN");
             System.out.println(ConsoleUtility.PURPLE + "7." + ConsoleUtility.RESET + " Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
+            scanner.nextLine();
             switch (choice) {
                 case 1:
                     performWithdrawal();
@@ -110,9 +112,16 @@ public class ATM {
     }
 
     private void performDeposit() {
+        System.out.print("Enter deposit amount: ");
+        int amt = scanner.nextInt();
+        account.deposit(amt);
+        scanner.nextLine();
     }
 
     private void performWithdrawal() {
         System.out.print("Enter withdrawal amount: ");
+        int amt = scanner.nextInt();
+        account.withdraw(amt);
+        scanner.nextLine();
     }
     }
